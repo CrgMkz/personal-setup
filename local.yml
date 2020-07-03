@@ -1,9 +1,10 @@
 - hosts: localhost
   become: true
-  roles:
-    - role: gantsign.visual-studio-code
-
   tasks:
+
+  - name: Install vscode
+    include_role:
+      name: vscode
 
   - name: Add Docker GPG key
     apt_key: url=https://download.docker.com/linux/ubuntu/gpg
