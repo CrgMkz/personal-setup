@@ -15,8 +15,8 @@
       state: present
       update_cache: yes
 
-  - name: Install Docker-compose
-    shell: curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
   - name: Install Node Version Manager
     shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+  - name: Install Docker-compose
+    shell: curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
