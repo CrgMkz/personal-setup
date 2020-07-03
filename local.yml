@@ -1,5 +1,8 @@
 - hosts: localhost
   become: true
+  roles:
+    - role: gantsign.visual-studio-code
+
   tasks:
 
   - name: Add Docker GPG key
@@ -20,6 +23,3 @@
 
   - name: Install Docker-compose
     shell: curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-  roles:
-    - role: gantsign.visual-studio-code
