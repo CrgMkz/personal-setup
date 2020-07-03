@@ -1,13 +1,6 @@
 - hosts: localhost
   become: true
   tasks:
-  - name: Install packages
-    apt: name={{item}}
-    with_items:
-      - htop
-      - mc
-      - tmux
-      - tree
 
   - name: Add Docker GPG key
     apt_key: url=https://download.docker.com/linux/ubuntu/gpg
@@ -18,12 +11,12 @@
 
   - name: Install list of packages
     apt:
-      name: "{{ item }}"
+      name: ['htop', 'mc', 'tree', 'curl', 'jq', 'wget', 'apt-transport-https', 'ca-certificates', 'software-properties-common', 'docker-ce']
       state: present
       update_cache: yes
-    with_items:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - software-properties-common
-      - docker-ce
+
+  - name: Install Docker-compose
+    shell: curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+  - name: Install Node Version Manager
+    shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
